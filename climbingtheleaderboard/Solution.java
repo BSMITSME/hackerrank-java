@@ -24,28 +24,72 @@ import javax.print.DocFlavor.INPUT_STREAM;
 class Result {
     public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
         // Write your code here
-
-        Map<Integer, Integer> rankMap = new HashMap<>();
-        List<Integer> arr = new ArrayList<>();
+        // 1차
+    //     Map<Integer, Integer> rankMap = new HashMap<>();
+    //     List<Integer> arr = new ArrayList<>();
     
-        int counter = 1;
-        for (int i = 0; i<player.size(); i++ ){
+    //     int counter = 1;
+    //     for (int i = 0; i<player.size(); i++ ){
             
-            ranked.add(player.get(i));
-            Collections.sort(ranked, Collections.reverseOrder());
-            for (int a = 0; a<ranked.size(); a++){
-                if (!rankMap.containsKey(ranked.get(a))){
-                    rankMap.put(ranked.get(a), counter++);
-                }
-            }
+    //         ranked.add(player.get(i));
+    //         Collections.sort(ranked, Collections.reverseOrder());
+    //         for (int a = 0; a<ranked.size(); a++){
+    //             if (!rankMap.containsKey(ranked.get(a))){
+    //                 rankMap.put(ranked.get(a), counter++);
+    //             }
+    //         }
             
-            System.out.println("rankMap"+rankMap);
-            arr.add(rankMap.get(player.get(i)));
+    //         System.out.println("rankMap"+rankMap);
+    //         arr.add(rankMap.get(player.get(i)));
 
+    //     }
+
+    //     return arr;
+    // }
+    // 2차 답변 (카피)
+    HashSet<Integer> set=new HashSet<>(ranked);
+        ranked=new ArrayList<>(set);
+        Collections.sort(ranked, Collections.reverseOrder());
+
+
+        List<Integer> answer=new ArrayList<>();
+        for(int score: ranked){
+            System.out.println(score);
         }
 
-        return arr;
+        for(int p:player){
+
+            int left=0; //1
+            int right=ranked.size()-1; //last
+            int mid=0;
+
+            int rank=0;
+            while(left<=right){
+                mid=(left+right)/2;
+                if(p>ranked.get(mid)){
+                    right=mid-1;
+                }else{
+                    left=mid+1;
+                }
+
+                if(p==ranked.get(mid)) break;
+            }
+
+            if(p<ranked.get(mid)){
+                rank=mid+1;
+            }else{
+                rank=mid;
+            }
+            answer.add(rank+1);
+        }
+
+
+        for(int ans:answer){
+            System.out.println(ans);
+        }
+        return answer;
     }
+출처: https://red-mimmu.tistory.com/97 [개발자 밈무:티스토리]
 }
 public class Solution{
     
