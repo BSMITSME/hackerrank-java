@@ -59,20 +59,20 @@ class Result {
 
         for(int p:player){
 
-            int left=0; //1
-            int right=ranked.size()-1; //last
-            int mid=0;
+            int left=0; // 시작점
+            int right=ranked.size()-1; // 끝점
+            int mid=0; // 중간점
 
             int rank=0;
             while(left<=right){
                 mid=(left+right)/2;
-                if(p>ranked.get(mid)){
-                    right=mid-1;
+                if(p>ranked.get(mid)){ 
+                    right=mid-1; // 좁혀나가기
                 }else{
-                    left=mid+1;
+                    left=mid+1; 
                 }
 
-                if(p==ranked.get(mid)) break;
+                if(p==ranked.get(mid)) break; // 찾은 경우 중간점 인덱스 반환
             }
 
             if(p<ranked.get(mid)){
@@ -89,7 +89,6 @@ class Result {
         }
         return answer;
     }
-출처: https://red-mimmu.tistory.com/97 [개발자 밈무:티스토리]
 }
 public class Solution{
     
