@@ -1,3 +1,4 @@
-# HackerRank
-# Programmers
+#Algorithms site
+- HackerRank
+- Programmers
 
